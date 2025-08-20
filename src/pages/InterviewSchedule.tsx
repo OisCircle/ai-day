@@ -37,7 +37,7 @@ const InterviewSchedule: React.FC = () => {
 
   useEffect(() => {
     setInterviews(interviewRoundsData as InterviewRound[]);
-    setCandidates(candidatesData as Candidate[]);
+    setCandidates(candidatesData as unknown as Candidate[]);
     setUsers(usersData as UserType[]);
   }, []);
 

@@ -21,8 +21,7 @@ import {
 import { useState } from "react";
 
 const InterviewAnalysis: React.FC = () => {
-  const [selectedPeriod, setSelectedPeriod] = useState("month");
-  const [selectedMetric, setSelectedMetric] = useState("all");
+  const [selectedPeriod, setSelectedPeriod] = useState("30d");
   const [selectedInterviewer, setSelectedInterviewer] = useState<string | null>(
     null
   );

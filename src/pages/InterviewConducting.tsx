@@ -44,7 +44,7 @@ const InterviewConducting: React.FC = () => {
     );
     if (interviewData) {
       setInterview(interviewData);
-      const candidateData = (candidatesData as Candidate[]).find(
+      const candidateData = (candidatesData as unknown as Candidate[]).find(
         (c) => c.id === interviewData.candidateId
       );
       setCandidate(candidateData || null);
@@ -52,7 +52,7 @@ const InterviewConducting: React.FC = () => {
   }, [id]);
 
   useEffect(() => {
-    let timer: NodeJS.Timeout;
+    let timer: ReturnType<typeof setTimeout>;
     if (interviewStarted && !isRecording) {
       timer = setInterval(() => {
         setTimeElapsed((prev) => prev + 1);

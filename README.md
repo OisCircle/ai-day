@@ -1,80 +1,47 @@
-# AI 面试系统
+# AI Interview System
 
-基于人工智能的智能面试管理系统，为企业提供全流程的面试解决方案。
+基于 AI 的面试系统前端演示项目
 
-## 系统特性
+## 项目特性
 
-### 🎯 核心功能
+- 🎯 智能面试问题生成
+- 👥 候选人管理
+- 📅 面试日程安排
+- 📊 面试报告和分析
+- 🎨 现代化 UI 设计
 
-1. **HR 面试人管理**
-
-   - 候选人信息管理
-   - 面试流程跟踪
-   - 状态实时更新
-
-2. **智能面试**
-
-   - **技术一面**: 基于岗位 JD 和简历生成深度技术问题
-   - **技术二面**: 软实力评估（沟通、协作、问题解决能力）
-   - **VP 面试**: 管理能力和角色匹配评估
-
-3. **AI 辅助功能**
-
-   - 智能问题生成
-   - 实时面试记录
-   - 自动化评估分析
-   - 面试过程洞察
-
-4. **报告系统**
-   - 详细面试报告
-   - 综合评估总报告
-   - 面试官改进建议
-   - 数据分析仪表盘
-
-### ✨ 技术亮点
-
-- 🚀 现代化 React + TypeScript 技术栈
-- 🎨 精美的 Tailwind CSS 界面设计
-- 📊 丰富的数据可视化
-- 🤖 AI 驱动的智能分析
-- 📱 响应式设计，支持多设备
-
-## 快速开始
-
-### 环境要求
-
-- Node.js 18.0 或更高版本
-- npm 或 yarn 包管理器
-
-### 安装步骤
-
-1. **克隆项目**
-
-   ```bash
-   git clone <repository-url>
-   cd ai-interview-system
-   ```
-
-2. **安装依赖**
-
-   ```bash
-   npm install
-   ```
-
-3. **启动开发服务器**
-
-   ```bash
-   npm run dev
-   ```
-
-4. **访问应用**
-   打开浏览器访问 [http://localhost:3000](http://localhost:3000)
-
-### 构建生产版本
+## 本地开发
 
 ```bash
+# 安装依赖
+npm install
+
+# 启动开发服务器
+npm run dev
+
+# 构建生产版本
 npm run build
+
+# 预览生产版本
 npm run preview
+```
+
+## 部署
+
+### GitHub Pages 自动部署
+
+项目已配置 GitHub Actions 自动部署到 GitHub Pages。当你推送代码到 `main` 分支时，会自动触发部署流程。
+
+部署地址：https://oiscircle.github.io/ai-day
+
+### 手动部署
+
+```bash
+# 安装 gh-pages
+npm install -g gh-pages
+
+# 部署到 GitHub Pages
+npm run deploy
 ```
 
 ## 项目结构
@@ -82,176 +49,35 @@ npm run preview
 ```
 src/
 ├── components/          # 通用组件
-│   └── Layout.tsx      # 主布局组件
 ├── pages/              # 页面组件
-│   ├── Dashboard.tsx              # 仪表盘
-│   ├── CandidateManagement.tsx    # 候选人管理
-│   ├── InterviewSchedule.tsx      # 面试安排
-│   ├── InterviewConducting.tsx    # 面试进行
-│   ├── InterviewReports.tsx       # 面试报告
-│   └── InterviewAnalysis.tsx      # 数据分析
-├── data/               # 模拟数据
-│   ├── users.json
-│   ├── candidates.json
-│   ├── jobDescriptions.json
-│   ├── interviewRounds.json
-│   └── questionTemplates.json
-├── types/              # 类型定义
-│   └── index.ts
-└── App.tsx             # 主应用组件
+├── data/               # 静态数据
+├── types/              # TypeScript 类型定义
+├── App.tsx             # 主应用组件
+└── main.tsx            # 应用入口
 ```
 
-## 功能模块详解
+## 技术栈
 
-### 📊 仪表盘
+- React 18
+- TypeScript
+- Vite
+- React Router
+- Tailwind CSS
+- Lucide React Icons
 
-- 实时数据概览
-- 面试统计图表
-- 最近活动记录
-- 快速操作面板
-- AI 洞察建议
+## 路由结构
 
-### 👥 候选人管理
+- `/ai-day/` - 首页（重定向到 dashboard）
+- `/ai-day/dashboard` - 仪表板
+- `/ai-day/highlights` - 项目亮点
+- `/ai-day/candidates` - 候选人管理
+- `/ai-day/interviews` - 面试日程
+- `/ai-day/ai-questions` - AI 面试问题
+- `/ai-day/interview/:id` - 面试进行中
+- `/ai-day/reports` - 面试报告
+- `/ai-day/analysis` - 面试分析
 
-- 候选人信息录入
-- 简历解析展示
-- 面试进度跟踪
-- 状态管理
-- 批量操作
+## 许可证
 
-### 📅 面试安排
-
-- 智能排期系统
-- 面试官工作量均衡
-- 冲突检测
-- 提醒通知
-- 日程导出
-
-### 🎙️ 面试进行
-
-- AI 智能问题生成
-- 实时记录功能
-- 评分系统
-- 语音转文字（预留）
-- 面试流程控制
-
-### 📈 面试报告
-
-- 个人面试报告
-- 综合评估分析
-- 优劣势总结
-- 改进建议
-- 报告导出
-
-### 📊 数据分析
-
-- 面试效率分析
-- 通过率统计
-- 技能评估趋势
-- 面试官表现
-- AI 洞察建议
-
-## 数据结构
-
-系统使用 TypeScript 定义了完整的数据模型：
-
-- `User`: 用户信息（HR、面试官、VP）
-- `Candidate`: 候选人信息和简历
-- `JobDescription`: 岗位描述和要求
-- `InterviewRound`: 面试轮次详情
-- `InterviewQuestion`: 面试问题模板
-- `InterviewEvaluation`: 评估结果
-- `InterviewReport`: 面试报告
-
-## 模拟数据
-
-系统内置了丰富的模拟数据，包括：
-
-- 4 个不同角色的用户
-- 2 个候选人完整简历
-- 多个岗位描述
-- AI 生成的问题模板
-- 完整的面试记录
-
-## AI 功能特性
-
-### 智能问题生成
-
-- 基于岗位 JD 分析
-- 结合候选人简历
-- 不同难度等级
-- 追问问题推荐
-
-### 实时评估建议
-
-- 面试过程指导
-- 关键点提醒
-- 评分建议
-- 改进意见
-
-### 数据洞察分析
-
-- 趋势预测
-- 异常检测
-- 效率优化建议
-- 质量改进方案
-
-## 界面设计
-
-### 设计原则
-
-- **简洁直观**: 清晰的信息架构
-- **高效操作**: 减少操作步骤
-- **视觉美观**: 现代化界面设计
-- **响应式**: 适配各种设备
-
-### 主要特色
-
-- 卡片式布局
-- 渐进式色彩系统
-- 图标化操作
-- 实时状态反馈
-
-## 扩展功能
-
-### 未来规划
-
-- [ ] 集成真实 AI 服务
-- [ ] 语音识别功能
-- [ ] 视频面试支持
-- [ ] 移动端应用
-- [ ] 多语言支持
-- [ ] 企业微信集成
-
-### 技术优化
-
-- [ ] 图表库集成 (Chart.js/D3.js)
-- [ ] 状态管理 (Zustand/Redux)
-- [ ] 数据持久化
-- [ ] 实时通信 (WebSocket)
-- [ ] 性能优化
-
-## 开发指南
-
-### 代码规范
-
-- 使用 ESLint 和 Prettier
-- TypeScript 严格模式
-- 组件化开发
-- 响应式设计
-
-### 添加新功能
-
-1. 在 `types/index.ts` 中定义数据类型
-2. 在 `data/` 目录添加模拟数据
-3. 创建对应的页面组件
-4. 更新路由配置
-
-## 技术支持
-
-如有问题或建议，请联系开发团队。
-
----
-
-**AI 面试系统** - 让面试更智能，让招聘更高效 🚀
+MIT License
 

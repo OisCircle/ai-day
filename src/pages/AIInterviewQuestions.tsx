@@ -43,7 +43,7 @@ const AIInterviewQuestions: React.FC = () => {
     // 默认选择golang开发者张伟
     const golangCandidate = candidatesData.find((c) => c.name === "张伟");
     if (golangCandidate) {
-      setSelectedCandidate(golangCandidate as Candidate);
+      setSelectedCandidate(golangCandidate as unknown as Candidate);
     }
   }, []);
 
@@ -86,8 +86,7 @@ const AIInterviewQuestions: React.FC = () => {
   ];
 
   // 根据面试类型生成AI面试题
-  const generateAIQuestions = (type: string, candidate: Candidate) => {
-    const baseInfo = candidate.resume;
+  const generateAIQuestions = (type: string, _candidate: Candidate) => {
 
     const questionSets = {
       hr: {
@@ -243,20 +242,12 @@ const AIInterviewQuestions: React.FC = () => {
     return questionSets[type as keyof typeof questionSets] || questionSets.hr;
   };
 
-  if (!selectedCandidate) {
-    return (
-      <div className="flex items-center justify-center h-64">
-        <div className="text-center">
-          <Brain className="h-16 w-16 text-gray-300 mx-auto mb-4" />
-          <h3 className="text-lg font-medium text-gray-900">加载中...</h3>
-        </div>
-      </div>
-    );
-  }
+  const candidate = selectedCandidate;
+  if (!candidate) return null;
 
   const currentQuestions = generateAIQuestions(
     selectedInterviewType,
-    selectedCandidate
+    candidate
   );
 
   return (
@@ -327,21 +318,21 @@ const AIInterviewQuestions: React.FC = () => {
                 <div className="text-center">
                   <div className="h-20 w-20 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center mx-auto mb-4">
                     <span className="text-white font-bold text-2xl">
-                      {selectedCandidate.name.charAt(0)}
+                      {candidate.name.charAt(0)}
                     </span>
                   </div>
                   <h4 className="text-xl font-bold text-gray-900">
-                    {selectedCandidate.name}
+                    {candidate.name}
                   </h4>
                   <p className="text-gray-600">Golang高级后端工程师</p>
                   <div className="flex items-center justify-center space-x-4 mt-3 text-sm text-gray-500">
                     <div className="flex items-center">
                       <MapPin className="h-4 w-4 mr-1" />
-                      {selectedCandidate.resume.personalInfo.location}
+                      {candidate.resume.personalInfo.location}
                     </div>
                     <div className="flex items-center">
                       <Phone className="h-4 w-4 mr-1" />
-                      {selectedCandidate.resume.personalInfo.phone}
+                      {candidate.resume.personalInfo.phone}
                     </div>
                   </div>
                 </div>
@@ -353,7 +344,7 @@ const AIInterviewQuestions: React.FC = () => {
                     核心技能
                   </h5>
                   <div className="flex flex-wrap gap-2">
-                    {selectedCandidate.resume.skills.technical.map(
+                    {candidate.resume.skills.technical.map(
                       (skill, index) => (
                         <span
                           key={index}
@@ -380,7 +371,7 @@ const AIInterviewQuestions: React.FC = () => {
                     工作经验 (5年+)
                   </h5>
                   <div className="space-y-4">
-                    {selectedCandidate.resume.experience.map((exp, index) => (
+                    {candidate.resume.experience.map((exp, index) => (
                       <div
                         key={index}
                         className="border-l-2 border-blue-200 pl-4 pb-4"
@@ -420,7 +411,7 @@ const AIInterviewQuestions: React.FC = () => {
                     核心项目
                   </h5>
                   <div className="space-y-3">
-                    {selectedCandidate.resume.projects
+                    {candidate.resume.projects
                       .slice(0, 2)
                       .map((project, index) => (
                         <div key={index} className="bg-gray-50 rounded-lg p-3">

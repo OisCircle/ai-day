@@ -128,7 +128,7 @@ const DataVisualization = ({ className }: DataVisualizationProps) => {
         <div className="relative">
           {/* 趋势线图 */}
           <div className="flex items-end justify-between h-40 mb-4">
-            {trendData.map((item, index) => {
+            {trendData.map((item) => {
               const height = (item.value / maxTrendValue) * 100;
               return (
                 <div
